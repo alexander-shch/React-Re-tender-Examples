@@ -10,7 +10,7 @@ interface ChildProps {
 const RegularChild: FC<ChildProps> = ({ text }) => {  
   const { ref } = useRerenderHook();
   return (
-    <div ref={ref} style={containerStyle}>
+    <div ref={ref} id='regular' style={containerStyle}>
       <h4>Regular Child (No Memo)</h4>
       <p>{text}</p>
     </div>
@@ -20,7 +20,7 @@ const RegularChild: FC<ChildProps> = ({ text }) => {
 const MemoizedChild = memo<ChildProps>(({ text }) => {
   const { ref } = useRerenderHook();
   return (
-    <div ref={ref} style={containerStyle}>
+    <div ref={ref} style={containerStyle} id='memoized'>
       <h4>Memoized Child</h4>
       <p>{text}</p>
     </div>

@@ -152,7 +152,7 @@ const FormSummary = memo(() => {
   const formData = useFormSelector(state => state);
   
   return (
-    <div ref={ref} style={containerStyle}>
+    <div ref={ref} style={containerStyle} role="region" aria-label="Form Summary">
       <h4>Form Summary</h4>
       <pre style={{ background: '#f5f5f5', padding: '10px' }}>
         {JSON.stringify(formData, null, 2)}
@@ -166,7 +166,7 @@ const StaticComponent = memo(() => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
-      <h4>Static Component</h4>
+      <h4>Static Element</h4>
       <p>This component never re-renders because it doesn't use any form state</p>
     </div>
   );
@@ -186,7 +186,7 @@ const FormContextExample: React.FC = () => {
       <p>Watch how components highlight in green when they re-render:</p>
       <ul>
         <li>Each field component only re-renders when its specific value changes</li>
-        <li>The form summary re-renders when any value changes</li>
+        <li>The summary re-renders when any value changes</li>
         <li>The static component never re-renders</li>
         <li>Other fields don't re-render when a single field changes</li>
       </ul>
@@ -212,7 +212,7 @@ const FormContextExample: React.FC = () => {
 };
 
 // Wrap the example in Provider
-const FormContextExampleWrapper: React.FC = () => (
+const FormContextExampleWrapper: FC = () => (
   <FormProvider>
     <FormContextExample />
   </FormProvider>

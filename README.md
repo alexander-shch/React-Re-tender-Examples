@@ -14,7 +14,7 @@ This project contains various examples demonstrating different approaches to man
 To get started with this project, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/alexander-shch/React-Re-tender-Examples
+git clone https://github.com/alexander-shch/react-re-render-examples
 cd React-Re-tender-Examples
 npm install
 ```

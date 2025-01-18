@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, memo } from 'react';
+import { createContext, useContext, useState, memo, FC } from 'react';
 import { Link } from 'react-router-dom';
 import { buttonStyle, containerStyle, navButtonStyle } from '../styles';
 import { useRerenderHook } from '../hooks/rerenderHook';
@@ -6,7 +6,7 @@ import { useRerenderHook } from '../hooks/rerenderHook';
 const CountContext = createContext({ count: 0, setCount: (n: number) => {} });
 
 // Regular component - will re-render when parent re-renders
-const ParentComponent: React.FC = () => {
+const ParentComponent: FC = () => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
@@ -19,7 +19,7 @@ const ParentComponent: React.FC = () => {
 };
 
 // Regular component - will re-render when parent re-renders
-const ChildA: React.FC = () => {
+const ChildA: FC = () => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
@@ -54,7 +54,7 @@ const ChildC = memo(() => {
   );
 });
 
-const ContextExample: React.FC = () => {
+const ContextExample: FC = () => {
   const [count, setCount] = useState(0);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from 'react';
+import { useState, useCallback, memo, FC } from 'react';
 import { Link } from 'react-router-dom';
 import { containerStyle, buttonStyle, navButtonStyle } from '../styles';
 import { useRerenderHook } from '../hooks/rerenderHook';
@@ -32,7 +32,7 @@ const CallbackButton = memo<ButtonProps>(({ onClick, label }) => {
   );
 });
 
-const CallbackExample: React.FC = () => {
+const CallbackExample: FC = () => {
   const [countA, setCountA] = useState(0);
   const [countB, setCountB] = useState(0);
   const [unrelatedState, setUnrelatedState] = useState(0);

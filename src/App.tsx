@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ContextExample from './pages/ContextExample';
@@ -9,7 +9,7 @@ import ReduxExample from './pages/ReduxExample';
 import OptimizedContextExample from './pages/OptimizedContextExample';
 import FormContextExample from './pages/FormContextExample';
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

@@ -3,6 +3,3 @@ export interface CountContextType {
   increment: () => void;
 }
 
-export interface CountProviderProps {
-  children: React.ReactNode;
-}

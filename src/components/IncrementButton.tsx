@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { CountContext } from './CountProvider';
 
-const IncrementButton: React.FC = () => {
+const IncrementButton: FC = () => {
   const { increment } = useContext(CountContext);
   return <button onClick={increment}>+1</button>;
 };

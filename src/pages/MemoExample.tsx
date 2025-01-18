@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import { useState, memo, FC } from 'react';
 import { Link } from 'react-router-dom';
 import { containerStyle, buttonStyle, navButtonStyle } from '../styles';
 import { useRerenderHook } from '../hooks/rerenderHook';
@@ -7,7 +7,7 @@ interface ChildProps {
   text: string;
 }
 
-const RegularChild: React.FC<ChildProps> = ({ text }) => {
+const RegularChild: FC<ChildProps> = ({ text }) => {  
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
@@ -27,7 +27,7 @@ const MemoizedChild = memo<ChildProps>(({ text }) => {
   );
 });
 
-const MemoExample: React.FC = () => {
+const MemoExample: FC = () => {
   const [count, setCount] = useState(0);
   const [text, setText] = useState('Hello');
 

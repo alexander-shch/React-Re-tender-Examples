@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 import CountDisplay from './CountDisplay';
 import IncrementButton from './IncrementButton';
 
-const NestedComponent: React.FC = () => {
+const NestedComponent: FC = () => {
   return (
     <div>
       <h1>Nested Component Example</h1>

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useMemo, memo } from 'react';
+import { createContext, useContext, useState, useMemo, memo, FC, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { buttonStyle, containerStyle, navButtonStyle } from '../styles';
 import { useRerenderHook } from '../hooks/rerenderHook';
@@ -35,7 +35,7 @@ const useFormSelector = <T,>(selector: (state: FormState) => T): T => {
   return useMemo(() => selector(state), [selector, state]);
 };
 
-const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const FormProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [formState, setFormState] = useState<FormState>(initialState);
   
   const actions = useMemo(() => ({

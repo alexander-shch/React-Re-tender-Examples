@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, FC } from 'react';
 import { Link } from 'react-router-dom';
 import { containerStyle, buttonStyle, navButtonStyle } from '../styles';
 import { useRerenderHook } from '../hooks/rerenderHook';
@@ -7,7 +7,7 @@ interface ChildProps {
   text: string;
 }
 
-const Child: React.FC<ChildProps> = ({ count, text }) => {
+const Child: FC<ChildProps> = ({ count, text }) => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
@@ -17,7 +17,7 @@ const Child: React.FC<ChildProps> = ({ count, text }) => {
   );
 };
 
-const PropsExample: React.FC = () => {
+const PropsExample: FC = () => {
   const { ref } = useRerenderHook();
   const [count, setCount] = useState(0);
   const [unrelatedState, setUnrelatedState] = useState(0);

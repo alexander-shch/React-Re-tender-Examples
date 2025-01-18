@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { containerStyle, navButtonStyle } from '../styles';
 
@@ -12,7 +12,7 @@ const examples = [
   { path: '/redux-example', name: 'Redux Re-renders Example' },
 ];
 
-const HomePage: React.FC = () => {
+const HomePage: FC = () => {
   return (
     <div style={containerStyle}>
       <h1>React Re-render Examples</h1>

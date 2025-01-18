@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useMemo, memo } from 'react';
+import { createContext, useContext, useState, useMemo, memo, FC, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { buttonStyle, containerStyle, navButtonStyle } from '../styles';
 import { useRerenderHook } from '../hooks/rerenderHook';
@@ -14,7 +14,7 @@ const useCountSelector = <T,>(selector: (state: { count: number }) => T) => {
 };
 
 // Provider component that splits state and actions
-const OptimizedCountProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const OptimizedCountProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [count, setCount] = useState(0);
   
   // Memoize the increment function
@@ -34,7 +34,7 @@ const OptimizedCountProvider: React.FC<{ children: React.ReactNode }> = ({ child
   );
 };
 
-const ParentComponent: React.FC = () => {
+const ParentComponent: FC = () => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
@@ -99,7 +99,7 @@ const ChildB = memo(() => {
   );
 });
 
-const OptimizedContextExample: React.FC = () => {
+const OptimizedContextExample: FC = () => {
   const { ref } = useRerenderHook();
   const { increment } = useContext(CountActionsContext);
 

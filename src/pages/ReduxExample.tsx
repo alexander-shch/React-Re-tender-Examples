@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
@@ -24,7 +24,7 @@ const store = configureStore({
 });
 
 // Regular component - will re-render when parent re-renders
-const ParentComponent: React.FC = () => {
+const ParentComponent: FC = () => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
@@ -37,7 +37,7 @@ const ParentComponent: React.FC = () => {
 };
 
 // Regular component - will re-render when parent re-renders
-const ChildA: React.FC = () => {
+const ChildA: FC = () => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
@@ -58,7 +58,7 @@ const MemoizedChildA = memo(() => {
   );
 });
 
-const ChildBChild: React.FC = () => {
+const ChildBChild: FC = () => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
@@ -91,7 +91,7 @@ const ChildB = memo(() => {
   );
 });
 
-const ReduxExample: React.FC = () => {
+const ReduxExample: FC = () => {
   const dispatch = useDispatch();
   const {ref} = useRerenderHook();
 
@@ -122,7 +122,7 @@ const ReduxExample: React.FC = () => {
 };
 
 // Wrap the example in Provider
-const ReduxExampleWrapper: React.FC = () => (
+const ReduxExampleWrapper: FC = () => (
   <Provider store={store}>
     <ReduxExample />
   </Provider>

@@ -2,6 +2,7 @@
   "name": "react-render-examples",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://alexander-shch.github.io/react-re-render-examples",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "^16.18.0",

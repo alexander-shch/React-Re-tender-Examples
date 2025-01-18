@@ -119,8 +119,23 @@ Demonstrates how `useCallback` affects re-renders of memoized components.
 
 ---
 
-## Gotchas with React.memo and useCallback
+## 8. Double State Set Example
+### Description
+Illustrates how batch state set requests trigger re-renders.
 
+### Benefits
+- Simplifies state updates by batching multiple state changes into a single action.
+- Reduces the number of re-renders caused by individual state updates.
+
+### Cons
+- Can lead to unnecessary re-renders if not used properly, for example with async or timeout functions.
+
+### Misconceptions
+- Some think that batch state set is always the best way to manage state, but it can lead to performance issues in large applications.
+
+---
+
+## 9. Gotchas with React.memo and useCallback
 ### Gotchas with React.memo
 
 1. **Shallow Comparison**:

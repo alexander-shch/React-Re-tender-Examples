@@ -14,8 +14,8 @@ This project contains various examples demonstrating different approaches to man
 To get started with this project, clone the repository and install the dependencies:
 
 ```bash
-git clone <repository-url>
-cd windsurf-project
+git clone https://github.com/alexander-shch/React-Re-tender-Examples
+cd React-Re-tender-Examples
 npm install
 ```
 
@@ -32,6 +32,9 @@ The following examples are included in this project:
 2. **Redux Example**: Shows how to manage state globally using Redux.
 3. **Optimized Context Example**: An optimized version of context management.
 4. **Form Context Example**: Demonstrates managing form state with optimized context.
+5. **Props Example**: Illustrates how prop changes trigger re-renders.
+6. **Memo Example**: Shows the use of `React.memo` to prevent unnecessary re-renders.
+7. **Callback Example**: Demonstrates how `useCallback` affects re-renders of memoized components.
 
 ## Benefits and Drawbacks
 

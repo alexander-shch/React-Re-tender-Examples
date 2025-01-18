@@ -68,6 +68,52 @@ Demonstrates managing form state with optimized context.
 
 ---
 
+## 5. Props Example
+### Description
+Illustrates how prop changes trigger re-renders.
+
+### Benefits
+- Simple to understand and implement.
+- Directly shows how React handles re-renders based on prop changes.
+
+### Cons
+- Can lead to unnecessary re-renders if not managed properly.
+
+### Misconceptions
+- Many think that props are always the best way to manage state, but they can lead to performance issues in large applications.
+
+---
+
+## 6. Memo Example
+### Description
+Shows the use of `React.memo` to prevent unnecessary re-renders.
+
+### Benefits
+- Optimizes performance by preventing re-renders of memoized components.
+
+### Cons
+- Can introduce complexity if overused.
+
+### Misconceptions
+- Some believe that `React.memo` is a silver bullet for performance, but it should be used judiciously.
+
+---
+
+## 7. Callback Example
+### Description
+Demonstrates how `useCallback` affects re-renders of memoized components.
+
+### Benefits
+- Prevents unnecessary re-creations of functions, optimizing performance.
+
+### Cons
+- Can lead to stale closures if dependencies are not managed correctly.
+
+### Misconceptions
+- Some think that `useCallback` is always necessary, but it should only be used when performance is a concern.
+
+---
+
 ## Gotchas with React.memo and useCallback
 
 ### Gotchas with React.memo

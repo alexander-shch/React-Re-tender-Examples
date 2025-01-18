@@ -6,19 +6,6 @@ import { useRerenderHook } from '../hooks/rerenderHook';
 const CountContext = createContext({ count: 0, setCount: (n: number) => {} });
 
 // Regular component - will re-render when parent re-renders
-const ParentComponent: FC = () => {
-  const { ref } = useRerenderHook();
-  return (
-    <div ref={ref} style={containerStyle}>
-      <h3>Parent Component</h3>
-      <ChildA />
-      <MemoizedChildB />
-      <ChildC />
-    </div>
-  );
-};
-
-// Regular component - will re-render when parent re-renders
 const ChildA: FC = () => {
   const { ref } = useRerenderHook();
   return (
@@ -42,17 +29,32 @@ const MemoizedChildB = memo(() => {
 
 // Even with memo, this will re-render when context changes
 const ChildC = memo(() => {
+  // function Example() {}
+  // Example.prototype.props = Object.assign(Example.prototype.props, CountContext.Provider.arguments.count);
   const { count } = useContext(CountContext);
   const { ref } = useRerenderHook();
   
   return (
     <div ref={ref} style={containerStyle}>
-      <h4>Child B (Using Context, With Memo)</h4>
+      <h4>Child C (Using Context, With Memo)</h4>
       <p>Count from context: {count}</p>
       <p>This component will re-render when context changes, even though it's memoized</p>
     </div>
   );
 });
+
+// Regular component - will re-render when parent re-renders
+const ParentComponent: FC = () => {
+  const { ref } = useRerenderHook();
+  return (
+    <div ref={ref} style={containerStyle}>
+      <h3>Parent Component</h3>
+      <ChildA />
+      <MemoizedChildB />
+      <ChildC />
+    </div>
+  );
+};
 
 const ContextExample: FC = () => {
   const [count, setCount] = useState(0);

@@ -30,6 +30,11 @@ Demonstrates how to manage state globally using Redux.
 ### Cons
 - More boilerplate code compared to context.
 - Can be overkill for simple state management needs.
+- Requires additional setup and learning curve.
+- Issues will occur when requiring state from a higher level store
+
+### 2nd opinion
+Use Zustand instead for smaller applications/components or for specific chunks/modules
 
 ### Misconceptions
 - Some think Redux is only for large applications, but it can be beneficial for medium-sized apps as well.

@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { containerStyle, navButtonStyle } from '../styles';
 
 const examples = [
+  { path: '/double-state-set', name: 'Double State Set Example' },
   { path: '/props-example', name: 'Props Updates Example' },
   { path: '/memo-example', name: 'React.memo Usage Example' },
   { path: '/callback-example', name: 'useCallback Example' },
   { path: '/context-example', name: 'Context Re-renders Example' },
+  { path: '/redux-example', name: 'Redux Re-renders Example' },
   { path: '/optimized-context-example', name: 'Optimized Context Example' },
   { path: '/form-context-example', name: 'Form Context Example' },
-  { path: '/redux-example', name: 'Redux Re-renders Example' },
 ];
 
 const HomePage: FC = () => {

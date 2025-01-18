@@ -13,7 +13,7 @@ describe('ContextExample', () => {
     renderWithRouter(<ContextExample />);
     expect(screen.getByText("Child A (No Context, No Memo)")).toBeInTheDocument();
     expect(screen.getByText("Child B (No Context, With Memo)")).toBeInTheDocument();
-    expect(screen.getByText("Child B (Using Context, With Memo)")).toBeInTheDocument();
+    expect(screen.getByText("Child C (Using Context, With Memo)")).toBeInTheDocument();
   });
 
   it('increments count when button is clicked', () => {

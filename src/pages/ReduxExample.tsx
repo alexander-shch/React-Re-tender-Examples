@@ -72,7 +72,10 @@ const ChildBChild: FC = () => {
 const ChildB = memo(() => {
   const { ref } = useRerenderHook();
   // useSelector only causes re-render if the selected value changes
-  const count = useSelector((state: any) => state.counter.value);
+  const count = useSelector((state: any) => {
+    console.debug(state)
+    return state.counter.value
+  });
   const dispatch = useDispatch();
   
   return (

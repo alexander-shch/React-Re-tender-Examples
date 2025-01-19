@@ -30,7 +30,7 @@ const ParentComponent: FC = () => {
     <div ref={ref} style={containerStyle}>
       <h3>Parent Component</h3>
       <ChildA />
-      <MemoizedChildA />
+      <MemoizedChildB />
       <ChildB />
     </div>
   );
@@ -48,39 +48,46 @@ const ChildA: FC = () => {
 };
 
 // Memoized component - won't re-render when parent re-renders
-const MemoizedChildA = memo(() => {
+const MemoizedChildB = memo(() => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
-      <h4>Child A (No Redux, With Memo)</h4>
+      <h4>Child B (No Redux, With Memo)</h4>
       <p>This component won't re-render because it's memoized and doesn't use Redux</p>
     </div>
   );
 });
 
-const ChildBChild: FC = () => {
+const ChildCchild: FC = () => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
-      <h4>Child B Child (No Redux, No Memo)</h4>
-      <p>This component won't re-render because it doesn't use Redux</p>
+      <h4>Child C Child (No Redux, No Memo)</h4>
+      <p>This component will re-render because it's a child</p>
     </div>
   );
 };
+
+const ChildCchildMemo: FC = memo(() => {
+  const { ref } = useRerenderHook();
+  return (
+    <div ref={ref} style={containerStyle}>
+      <h4>Child C Child (No Redux, With Memo)</h4>
+      <p>This component will not re-render</p>
+    </div>
+  );
+})
 
 // With Redux, this will ONLY re-render when the selected state changes
 const ChildB = memo(() => {
   const { ref } = useRerenderHook();
   // useSelector only causes re-render if the selected value changes
-  const count = useSelector((state: any) => {
-    console.debug(state)
-    return state.counter.value
-  });
+  const count = useSelector((state: any) => state.counter.value);
   const dispatch = useDispatch();
   
   return (
     <div ref={ref} style={containerStyle}>
-      <h4>Child B (Using Redux, With Memo)</h4>
+      <h4>Child C (Using Redux, With Memo)</h4>
       <p>Count from Redux: {count}</p>
       <p>This component will ONLY re-render when the selected state changes</p>
       <button 
@@ -89,7 +96,8 @@ const ChildB = memo(() => {
       >
         Increment in Child
       </button>
-      <ChildBChild />
+      <ChildCchild />
+      <ChildCchildMemo />
     </div>
   );
 });
@@ -107,9 +115,13 @@ const ReduxExample: FC = () => {
       <h2>Redux Re-render Example</h2>
       <p>Watch how components highlight in green when they re-render:</p>
       <ul>
-        <li>Child A without memo re-renders when parent re-renders</li>
-        <li>Child A with memo doesn't re-render at all</li>
-        <li>Child B with memo ONLY re-renders when its selected state changes</li>
+        <li>Child A without memo won't re-render when state changes, but will re-render when parent re-renders</li>
+        <li>Child B-Memo with memo doesn't re-render at all</li>
+        <li>Child C-Memo with memo ONLY re-renders when its selected state changes</li>
+        <ul>
+          <li>Child of C-Memo without memo re-renders when its parent re-renders</li>
+          <li>Child of C-Memo with memo doesn't re-render when its parent re-renders</li>
+        </ul>
         <li>Unlike Context, other components using Redux don't re-render!</li>
       </ul>
 

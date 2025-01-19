@@ -22,18 +22,15 @@ const initialState: FormState = {
   country: ''
 };
 
-// Split contexts for state and actions
-const FormStateContext = createContext<FormState>(initialState);
+// Split contexts for each field
+const NameContext = createContext<string>('');
+const EmailContext = createContext<string>('');
+const AgeContext = createContext<string>('');
+const CountryContext = createContext<string>('');
 const FormActionsContext = createContext<FormActions>({
   updateField: () => {},
   resetForm: () => {}
 });
-
-// Custom hook to select specific parts of the state
-const useFormSelector = <T,>(selector: (state: FormState) => T): T => {
-  const state = useContext(FormStateContext);
-  return useMemo(() => selector(state), [selector, state]);
-};
 
 const FormProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [formState, setFormState] = useState<FormState>(initialState);
@@ -45,15 +42,18 @@ const FormProvider: FC<{ children: ReactNode }> = ({ children }) => {
     resetForm: () => setFormState(initialState)
   }), []);
 
-  // Memoize the state to prevent unnecessary re-renders
-  const state = useMemo(() => formState, [formState]);
-  
   return (
-    <FormStateContext.Provider value={state}>
-      <FormActionsContext.Provider value={actions}>
-        {children}
-      </FormActionsContext.Provider>
-    </FormStateContext.Provider>
+    <NameContext.Provider value={formState.name}>
+      <EmailContext.Provider value={formState.email}>
+        <AgeContext.Provider value={formState.age}>
+          <CountryContext.Provider value={formState.country}>
+            <FormActionsContext.Provider value={actions}>
+              {children}
+            </FormActionsContext.Provider>
+          </CountryContext.Provider>
+        </AgeContext.Provider>
+      </EmailContext.Provider>
+    </NameContext.Provider>
   );
 };
 
@@ -68,7 +68,7 @@ const inputStyle = {
 // Each field is a separate component that only re-renders when its value changes
 const NameField = memo(() => {
   const { ref } = useRerenderHook();
-  const name = useFormSelector(state => state.name);
+  const name = useContext(NameContext);
   const { updateField } = useContext(FormActionsContext);
 
   return (
@@ -88,7 +88,7 @@ const NameField = memo(() => {
 
 const EmailField = memo(() => {
   const { ref } = useRerenderHook();
-  const email = useFormSelector(state => state.email);
+  const email = useContext(EmailContext);
   const { updateField } = useContext(FormActionsContext);
 
   return (
@@ -108,7 +108,7 @@ const EmailField = memo(() => {
 
 const AgeField = memo(() => {
   const { ref } = useRerenderHook();
-  const age = useFormSelector(state => state.age);
+  const age = useContext(AgeContext);
   const { updateField } = useContext(FormActionsContext);
 
   return (
@@ -128,7 +128,7 @@ const AgeField = memo(() => {
 
 const CountryField = memo(() => {
   const { ref } = useRerenderHook();
-  const country = useFormSelector(state => state.country);
+  const country = useContext(CountryContext);
   const { updateField } = useContext(FormActionsContext);
 
   return (
@@ -146,10 +146,20 @@ const CountryField = memo(() => {
   );
 });
 
-// FormSummary only re-renders when any field changes since it needs all values
+// FormSummary component needs all values so we'll pass them individually
 const FormSummary = memo(() => {
   const { ref } = useRerenderHook();
-  const formData = useFormSelector(state => state);
+  const name = useContext(NameContext);
+  const email = useContext(EmailContext);
+  const age = useContext(AgeContext);
+  const country = useContext(CountryContext);
+  
+  const formData = useMemo(() => ({
+    name,
+    email,
+    age,
+    country
+  }), [name, email, age, country]);
   
   return (
     <div ref={ref} style={containerStyle} role="region" aria-label="Form Summary">
@@ -190,6 +200,9 @@ const FormContextExample: React.FC = () => {
         <li>The static component never re-renders</li>
         <li>Other fields don't re-render when a single field changes</li>
       </ul>
+      <p>
+        This is an example of how form state can be split into individual contexts to prevent unnecessary re-renders. Although this is highly inconvenient, it's still a useful technique in some cases.
+      </p>
 
       <div style={{ display: 'grid', gap: '20px', gridTemplateColumns: '1fr 1fr', marginTop: '20px' }}>
         <NameField />

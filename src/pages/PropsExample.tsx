@@ -7,12 +7,12 @@ interface ChildProps {
   text: string;
 }
 
-const Child: FC<ChildProps> = ({ count = 0, text }) => {
+const Child: FC<ChildProps> = ({ count, text }) => {
   const { ref } = useRerenderHook();
   return (
     <div ref={ref} style={containerStyle}>
       <h4>{text}</h4>
-      <p>Count: {count}</p>
+      {count ? <p>Count: {count}</p> : null}
     </div>
   );
 };

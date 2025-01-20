@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://alexander-shch.github.io/react-re-render-examples",
   "dependencies": {
+    "@preact/signals": "^2.0.1",
+    "@preact/signals-react": "^3.0.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "^16.18.0",
     "@types/react": "^18.0.0",

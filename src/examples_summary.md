@@ -173,5 +173,39 @@ Illustrates how batch state set requests trigger re-renders.
 
 ---
 
+## Bonus: Preact Signals Example
+### Description
+Demonstrates how to use Preact Signals for state management with different approaches to handle re-renders.
+
+### Benefits
+- Fine-grained reactivity without component re-renders when using signals directly in JSX
+- Computed values that automatically update based on signal changes
+- Smaller bundle size compared to traditional state management solutions
+- Can force re-renders when needed using hooks like `useSignalEffect` or `useSignals`
+
+### Cons
+- Requires additional dependency (@preact/signals-react)
+- Mixing signal values (`.value`) and direct signal usage can lead to confusion
+- Need to be careful about when to use `.value` vs direct signal reference
+
+### Different Approaches
+1. **Direct Signal Usage**: 
+   - Use `{signal}` in JSX for automatic updates without re-renders
+   - Best for simple value displays where component re-render isn't needed
+
+2. **Force Re-renders with useSignals**:
+   - Use `useSignals()` hook to make component re-render on signal changes
+   - Good for when you need the entire component to update
+
+3. **Manual Re-render Control**:
+   - Use `useSignalEffect` with `useState` for manual control over re-renders
+   - Useful when you need to trigger re-renders based on specific signal changes
+
+### Misconceptions
+- Some might think signals always prevent re-renders, but they can be configured to trigger re-renders when needed
+- The `.value` property isn't just for updating signals; it changes how React interacts with the signal in JSX
+
+---
+
 ## Conclusion
 Each approach has its strengths and weaknesses. Choosing the right one depends on the specific needs of your application and the complexity of your state management requirements.

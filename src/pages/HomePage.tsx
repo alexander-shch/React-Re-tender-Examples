@@ -13,6 +13,10 @@ const examples = [
   { path: '/form-context-example', name: 'Form Context Example' },
 ];
 
+const bonusExamples = [
+  { path: '/signals-example', name: 'Preact Signals Example' },
+];
+
 const HomePage: FC = () => {
   return (
     <div style={containerStyle}>
@@ -22,6 +26,19 @@ const HomePage: FC = () => {
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
         {examples.map((example) => (
+          <Link 
+            key={example.path}
+            to={example.path}
+            style={{ textDecoration: 'none' }}
+          >
+            <button style={navButtonStyle}>
+              {example.name}
+            </button>
+          </Link>
+        ))}
+
+        <h2 style={{ marginTop: '20px' }}>Bonus</h2>
+        {bonusExamples.map((example) => (
           <Link 
             key={example.path}
             to={example.path}

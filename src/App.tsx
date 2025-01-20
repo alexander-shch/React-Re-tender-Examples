@@ -8,6 +8,7 @@ import CallbackExample from './pages/CallbackExample';
 import ReduxExample from './pages/ReduxExample';
 import OptimizedContextExample from './pages/OptimizedContextExample';
 import FormContextExample from './pages/FormContextExample';
+import SignalsExample from './pages/SignalsExample';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import DoubleStateSet from './pages/DoubleStateSet';
@@ -40,6 +41,7 @@ const App: FC = () => {
         <Route path="/memo-example" element={<MemoExample />} />
         <Route path="/double-state-set" element={<DoubleStateSet />} />
         <Route path="/callback-example" element={<CallbackExample />} />
+        <Route path="/signals-example" element={<SignalsExample />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Provider>

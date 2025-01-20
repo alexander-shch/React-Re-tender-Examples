@@ -1,5 +1,5 @@
-import { FC, useState } from 'react';
-import { signal, computed, useSignalEffect } from '@preact/signals-react';
+import { FC } from 'react';
+import { signal, computed } from '@preact/signals-react';
 import { containerStyle, navButtonStyle } from '../styles';
 import { useRerenderHook } from '../hooks/rerenderHook';
 import { useSignals } from '@preact/signals-react/runtime';

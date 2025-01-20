@@ -15,15 +15,14 @@ function CounterWithValue() {
   console.log('Counter re-renders', new Date().toLocaleTimeString());
 
   const increment = () => {
-    // A signal is updated by assigning to the `.value` property:
     count.value++;
   }
 
   return (
     <div ref={ref} style={containerStyle}>
       <h3>Counter Component</h3>
-      <p>The component re-renders every time count changes because we use useSignal</p>
-      <p>Because we use <code>count.value</code></p>
+      <p>The component re-renders every time the Signal count value changes because we added useSignal watcher</p>
+      <p>and we use <code>count.value</code> from the signal</p>
       <p>Count: {count.value}</p>
       <button onClick={increment}>click me</button>
     </div>
@@ -59,7 +58,7 @@ const DisplayCount: FC = () => {
   
   return (
     <div ref={ref} style={containerStyle}>
-      <h3>Display Component with computed</h3>
+      <h3>Display Component with computed (No re-render)</h3>
       <p>Current Count: {count}</p>
       <p>Current Count Double: {doubleCount}</p>
     </div>
@@ -82,8 +81,8 @@ const SignalsExample: FC = () => {
         Notice how components only re-render when their used signals change.
       </p>
       <p>We can also prevent any re-render effect using signals, depends on how we use them</p>
-      <CounterWithValue />
       <CounterWithoutValue />
+      <CounterWithValue />
       <DisplayCount />
     </div>
   );
